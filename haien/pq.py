@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib import request
 import A 
+from xpinyin import Pinyin
 class sho:
     provinceName = ""
     conformCount = 0
@@ -32,26 +33,10 @@ text = ans[head:tail]
 li = text.split('{')
 
 li = A.sholi(text)
-for i in range(len(li)):
-    #print (li[i].provinceName,li[i].conformCount,li[i].curedCount,li[i].deadCount)#,li[0].city)
-    print(li[i].provinceName,li[i].city)
-    print()
-'''
-for x in li:
-    x1 = x.split(',')
-    print(x)
-    if re.findall('"provinceName"',x) != []:
-        print("这是省")
-    #print(x1)
-    for i in range(len(x1)):
-        x2 = re.findall('[^},]*',x1[i])[0]
-        print(x2)
-'''
-'''
-for x in li:
-    x1 = x.split(',')
-    print(x1)
-    for i in range(len(x1)):
-        x2 = re.findall('[^},]*',x1[i])[0]
-        print(x2)
-        '''
+ll = sorted(li,key=lambda x: Pinyin().get_pinyin(x.provinceName).split('-')[0])
+
+'''这个脚本用来查询实施情况:'''
+print("目前情况:")
+for i in ll:
+    print(i.provinceName,'\n',"发现病例:",i.conformCount,'\n',"已治愈:",i.curedCount,"\n","已死亡:",i.deadCount)
+

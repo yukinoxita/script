@@ -29,7 +29,7 @@ def sholi(s):
         #print()
         title_naiyo = []
         if re.findall('"provinceName"',x) != []:
-            pn = x1[0].split(":")[1]
+            pn = x1[0].split(":")[1][1:-1]
             cnc = x1[2].split(":")[1]
             cdc = x1[4].split(":")[1]
             dc = x1[5].split(":")[1]
@@ -50,7 +50,9 @@ def sholi(s):
             if re.findall(title[2],i) != []:
                 title_naiyo.append(i.split(":")[1])
             if re.findall(title[3],i) != []:
-                title_naiyo.append(i.split(":")[1])
+                xxx = i.split(":")[1]
+                xxxx = re.findall('[^\]}]',xxx)[0]#去掉不必要的字符
+                title_naiyo.append(xxxx)
         dic = dict(zip(title,title_naiyo))
         city.append(dic)
        # print (a.city)

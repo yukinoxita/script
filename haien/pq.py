@@ -30,13 +30,36 @@ tail = len(ans) - tail
 text = ans[head:tail]
 #text = text.replace(":"," : ")
 
+'''替换关键字'''
+title = ["cityName","confirmedCount","curedCount","deadCount"]
+see = ["#","发现病例","已治愈","已死亡"]
+dictnaru = dict(zip(title,see))
+
 li = text.split('{')
 
 li = A.sholi(text)
 ll = sorted(li,key=lambda x: Pinyin().get_pinyin(x.provinceName).split('-')[0])
 
+
 '''这个脚本用来查询实施情况:'''
 print("目前情况:")
 for i in ll:
-    print(i.provinceName,'\n',"发现病例:",i.conformCount,'\n',"已治愈:",i.curedCount,"\n","已死亡:",i.deadCount)
+    print(i.provinceName)
+    print("发现病例:",i.conformCount)
+    print("已治愈:",i.curedCount)
+    print("已死亡:",i.deadCount)
+    for j in i.city:
+        for k in j:
+            if k == "cityName":
+                print("    %s"%(j[k]))
+                continue
+            print("        ",dictnaru[k],":",j[k])
 
+'''
+
+for i in ll:
+    for j in i.city:
+        for k in j:
+            print(k,":",j[k])
+
+'''

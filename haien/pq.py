@@ -51,7 +51,7 @@ for i in ll:
     for j in i.city:
         for k in j:
             if k == "cityName":
-                print("    %s"%(j[k]))
+                print("    %s:"%(j[k]))
                 continue
             print("        ",dictnaru[k],":",j[k])
 

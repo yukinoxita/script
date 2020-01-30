@@ -54,7 +54,7 @@ class ctf_member:
         return self.shiai
     pass
 def get_yes_point():
-    path = 'C:\\Users\\HIKKI\\Desktop\\每日积分\\'
+    path = ''
     y = (date.today() + timedelta(days = -1)).strftime("%Y-%m-%d")
     y += '.xls'
     path += y
@@ -63,7 +63,7 @@ def get_yes_point():
     return h.col_values(5)[1:]
     pass
 y_point = get_yes_point()#获取昨天的积分数
-with open("C:\\Users\\HIKKI\\Desktop\\每日积分.txt", encoding='utf-8') as fo:
+with open("", encoding='utf-8') as fo:
     fo = fo.read()
     fo = fo.split('\n')
     pass
@@ -76,8 +76,8 @@ for i in range(0, len(fo), 13):
 cl = ["ID","姓名","职位","称号","方向","积分","参赛次数","昨日得分","日期"]
 
 #制作姓名对应字典
-a_name = 'MZH WDZY GYL ZS ZJ FTY19 CST19 FYSY19 LXH19 ZZJM19 ZWY19'
-b_name = "穆展鸿 吴戴子赟 葛逸龙 张慎 赵九 封天宇 陈舜天 付杨思远 林筱涵 朱景明 张婉钰"
+a_name = '' 
+b_name = '' 
 a_name = a_name.split()
 b_name = b_name.split()
 d = dict(zip(a_name,b_name))
@@ -124,6 +124,6 @@ for i in range(len(li)):
 a = date.today().strftime("%Y-%m-%d")
 sheet.write(1,8,a,style)
 #----------------------------------------------------------------
-excel.save("C:\\Users\\HIKKI\\Desktop\\每日积分\\"+ a + ".xls")
+excel.save(""+ a + ".xls")
 
 

@@ -6,4 +6,6 @@
 	数据可视化  
 #文件夹说明:  
 ##	haien:因肺炎事件而编写的脚本
-##	gfsj:对队员的情况生成excel
+##	gfsj:对队员的情况生成excel  
+##	mysql:对mysql操作，会用python3和php写  
+

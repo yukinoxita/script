@@ -33,6 +33,7 @@ for i in results:
 cnt = 844
 
 for i in li:
+    #这个语句好像有sql注入的风险啊。。。。。
     sql_update1 = "update class set 学籍号=%d where 姓名='%s' ;"%(cnt,i)
     cursor.execute(sql_update1)
     cnt += 1

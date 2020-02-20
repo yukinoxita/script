@@ -4,14 +4,14 @@ from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 
-def send(name,user,passwd,qqnum):
+def send():
     HOST = 'smtp.qq.com'
-    SUBJECT = "有人申请注册账号"
-    FROM = "2647936408@qq.com"
-    TO = "1091057545@qq.com"
+    SUBJECT = ""
+    FROM = ""
+    TO = ""
 
     message = MIMEMultipart('related')
-    meru = "姓名:%s\n用户名:%s\n密码:%s\nQQ号:%s"%(name,user,passwd,qqnum)
+    meru = ""
 
     text = MIMEText(meru,'plain','utf-8') 
     message.attach(text)
@@ -25,8 +25,7 @@ def send(name,user,passwd,qqnum):
     email_client.connect(HOST,'465')
 
 
-    ans = email_client.login(FROM,'cntbcmqvhynpebja')
-    #print('kekka : ',ans)
+    ans = email_client.login(FROM,'授权码')
     email_client.sendmail(from_addr=FROM,to_addrs=TO,msg=message.as_string())
 
     email_client.close()
@@ -34,8 +33,7 @@ def send(name,user,passwd,qqnum):
 
 
 if __name__ == '__main__':
-    send("张三","admin","123456","123123")
-
+    send()
 
 
 

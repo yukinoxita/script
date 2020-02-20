@@ -1,5 +1,5 @@
 # 存放我写的脚本，以后会用各种语言写  
-  
+###  目前应该会有: cpp py js php    
 目前会放进来的有:  
 	python爬虫  
 	操作表格  
@@ -21,4 +21,6 @@
 	|-------upload_file.php:用php对sql进行操作  
 	|  
 	|-------form.html:文件上传表单  
-
+## 	email:用python3发送邮件  
+	|  
+	|-------send.py:简单的发送邮件  

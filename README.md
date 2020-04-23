@@ -36,3 +36,9 @@
 ##	python:其他python文件  
 	|  
 	|-------download_net_picture.py:爬取了某网站上面的一些资料图片  
+##  qiandao:签到脚本  
+    |  
+    |-------1.py:对于aoj的签到  
+    |  
+    |-------1.js:aoj的jsMD5函数  
+

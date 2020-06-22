@@ -8,9 +8,9 @@ hint()
     echo cpp/c: fo FILENAME EXENAME 
     echo "  fo 1.cpp 1 ==> g++ -g -o 1 1.cpp"
     echo 
-    echo py:    fo  FILENAME Version
+    echo py:    fo  FILENAME Version #(default python3)
     echo "  fo 1.py 2 ==> python 1.py"
-    echo "  fo 1.py 3 ==> python3 1.py"
+    echo "  fo 1.py   ==> python3 1.py"
     echo
     echo sh:    fo FILENAME 
     echo "  fo 1.sh ===> sh 1.sh"
@@ -47,7 +47,7 @@ elif [ "$suffix" = "c" ];then
 elif [ "$suffix" = "py" ];then
     if [ "$2" = 2 ];then
         python $1
-    elif [ "$2" = 3 ];then
+    elif [ ! "$2" ];then
         python3 $1
     else
         echo "[-] FILE ERROR!!!"

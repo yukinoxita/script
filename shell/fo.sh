@@ -50,9 +50,9 @@ elif [ "$suffix" = "py" ];then
     else
         echo "[-] FILE ERROR!!!"
     fi
-elif [ "$suffix"="sh" ];then
+elif [ "$suffix" = "sh" ];then
     sh $1
-elif [ "$suffix"="php" ];then
+elif [ "$suffix" = "php" ];then
     php $1
 else
     echo "[-] FILETYPE ERROR"

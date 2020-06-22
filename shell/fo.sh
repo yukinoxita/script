@@ -40,8 +40,10 @@ echo "[+] Runing $suffix file...."
 if [ "$suffix" = "cpp" ];then
     echo cpp coming 
     g++ -g -o $2 $1
+    `pwd`/$1
 elif [ "$suffix" = "c" ];then
     g++ -g -o $2 $1
+    `pwd`/$1
 elif [ "$suffix" = "py" ];then
     if [ "$2" = 2 ];then
         python $1

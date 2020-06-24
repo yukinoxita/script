@@ -1,10 +1,56 @@
-" ore no
+" 根据不同文件类型导入不同模板
 au BufNewFile *.cpp 0r ~/.vim/moudle/sim.cpp
+au BufNewFile *.html 0r ~/.vim/moudle/sim.html
+au BufNewFile *.php 0r ~/.vim/moudle/sim.php
+au BufNewFile *.py 0r ~/.vim/moudle/sim.py
+au BufNewFile *.sh 0r ~/.vim/moudle/sim.sh
 
 
 
+"=======================
+" leader
+let mapleader = "`"
+let maplocalleader = "-"
+"=======================
+" need to call funtion case.
+autocmd FileType python call Case_py()
+autocmd FileType cpp call Case_cpp()
+"=======================================================================================================
+" my function
+" 放一些各语言会用到的模板，分类放
+fun! Case_js()
+
+endfun
 
 
+fun! Case_php()
+
+endfun
+
+
+fun! Case_cpp()
+    nnoremap <localleader>c I//
+    set cindent                 " 开启C语言缩进模式
+    " 加一些好的功能
+    iab # #include <>
+    " ===========调用模板区============
+
+    " =================================
+endfun
+
+
+function Case_py()
+    nnoremap <localleader>c I#<esc>
+    " ===========调用模板区============
+    " python的话导入文件可能还会导入新的头文件，头文件和代码分开放
+    " 目前的缺点：无法解决光标位置
+    inoremap bs    <esc>:r ~/.YUKVIM/py/BS<CR>:0r ~/.YUKVIM/py/im/BS<CR>
+    inoremap pysql <esc>:r ~/.YUKVIM/py/SQL<CR>:0r ~/.YUKVIM/py/im/SQL<CR>
+
+    " =================================
+endfun
+
+"=======================================================================================================
 "sen sei ka ra
 syntax enable
 syntax on                       " 开启代码高亮
@@ -18,7 +64,6 @@ set tabstop=4                   " 设置 tab的宽度
 set expandtab                   " 空格代替tab
 set autoindent                  " 自动缩进
 set smartindent                 " 智能缩进,能识别{ }
-set cindent                     " 开启C语言缩进模式
 set shiftwidth=4                " 设置格式化时制表符所占用的空格
 set softtabstop=4               " 让vim把连续数量的制表看成空格
 set copyindent                  " 复制的时候 缩进
@@ -30,6 +75,10 @@ set list                        " 显示特殊字符
 set listchars=tab:\~\ ,trail:.  " 设定tab用~表示,行尾空白用.
 
 set laststatus=2                " 启动显示状态行(1),总是显示状态行(2) 
+
+if has("autocmd") " 进入文件回到上次编辑的位置
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 "====================================== 行为设定 =====================================
 filetype on                     "开启文件类型侦测
@@ -52,14 +101,34 @@ set vb t_vb=
 
 set fileencodings=utf-8         " 设定文件的编码
 set fileformat=unix             " 设定文件的格式
-
+"=======================================================================================================
+" 我自己的set
+let ppp="~/.YUKVIM/"
+"=======================================================================================================
 "快捷键
-imap <c-l> <esc>A
-imap <c-h> <esc>I
+inoremap <c-l> <esc>A
+inoremap <c-h> <esc>I
+inoremap <c-K> <esc>viw~i
 "括号自动补全
 inoremap ( ()<esc>i
 inoremap { {}<esc>i
 inoremap [ []<esc>i
 inoremap " ""<esc>i
 inoremap ' ''<esc>i
+vnoremap < <gv
+vnoremap > >gv
+
+" 纠正自己容易输入错误的单词
+iab incldue include
+iab scnaf scanf
+iab mian main
+iab ture true
+iab retrun return
+iab tehn then
+iab fro for
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel  " 给单词加上双引号
+nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel  " 给单词加上单引号
+nnoremap <leader>< viw<esc>a><esc>hbi<<esc>lel
+nnoremap <leader>[ viw<esc>a]<esc>hbi[<esc>lel
+nnoremap <leader>{ viw<esc>a}<esc>hbi{<esc>lel
 

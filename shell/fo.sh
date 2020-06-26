@@ -36,9 +36,9 @@ suffix=(${li[-1]})
 
 
 echo "[+] Runing $suffix file...."
+echo "##############################"
 
 if [ "$suffix" = "cpp" ];then
-    echo cpp coming 
     g++ -g -o $2 $1
     `pwd`/$2
 elif [ "$suffix" = "c" ];then

@@ -15,6 +15,7 @@ let maplocalleader = "-"
 " need to call funtion case.
 autocmd FileType python call Case_py()
 autocmd FileType cpp call Case_cpp()
+autocmd FileType html call Case_html()
 "=======================================================================================================
 " my function
 " 放一些各语言会用到的模板，分类放
@@ -22,18 +23,49 @@ fun! Case_js()
 
 endfun
 
+fun! Case_hp()
+    " 自动补全，肯定有更好的方法
+    " 目前不会
+    inoremap sc <script></script><esc>bhhi
+    inoremap st <style></style><esc>bhhi
+    inoremap aa <a href=""></a><esc>bhhi
+    inoremap ht <html></html><esc>bhhi
+    inoremap bo <body></body><esc>bhhi
+    inoremap sp <span></span><esc>bhhi
+    inoremap fm <form></form><esc>bhhi
+    inoremap pr <pre></pre><esc>bhhi
+    inoremap di <div></div><esc>bhhi
+    inoremap im <img src=""><esc>hi
+    inoremap h1 <h1></h1><esc>bhhi
+    inoremap h2 <h2></h2><esc>bhhi
+    inoremap h3 <h3></h3><esc>bhhi
+    inoremap li <li></li><esc>bhhi
+    inoremap ol <ol></ol><esc>bhhi
+    inoremap th <th></th><esc>bhhi
+    inoremap td <td></td><esc>bhhi
+    inoremap pp <p></p><esc>bhhi
+    inoremap bb <b></b><esc>bhhi
+    inoremap br <br/><esc>o
+    " ==============================
+endfun
+fun! Case_html()
+    call Case_hp()
+endfun
 
 fun! Case_php()
+    call Case_hp()
 
 endfun
 
 
 fun! Case_cpp()
     nnoremap <localleader>c I//
-    set cindent                 " 开启C语言缩进模式
     " 加一些好的功能
-    iab # #include <>
+    " iab # #include <> 垃圾写法，淘汰
+    inoremap inc #include <><esc>i
+    inoremap fp freopen("in","r",stdin);
     " ===========调用模板区============
+    inoremap bs bin_search()<esc>:r ~/.YUKVIM/c/bin<CR><esc>V19<CR>
 
     " =================================
 endfun
@@ -44,8 +76,8 @@ function Case_py()
     " ===========调用模板区============
     " python的话导入文件可能还会导入新的头文件，头文件和代码分开放
     " 目前的缺点：无法解决光标位置
-    inoremap bs    <esc>:r ~/.YUKVIM/py/BS<CR>:0r ~/.YUKVIM/py/im/BS<CR>
-    inoremap pysql <esc>:r ~/.YUKVIM/py/SQL<CR>:0r ~/.YUKVIM/py/im/SQL<CR>
+    inoremap bs    <esc>:r ~/.YUKVIM/py/BS<CR>:0r ~/.YUKVIM/py/im/BS<CR>Gi
+    inoremap sss <esc>:r ~/.YUKVIM/py/SQL<CR>:0r ~/.YUKVIM/py/im/SQL<CR>Gi
 
     " =================================
 endfun
@@ -58,7 +90,7 @@ set background=dark             " set bg=dark
 colorscheme murphy              " 设定主题
 set cmdheight=2                 " 设定cmd的高度
 set number                      " 开启行号
-set relativenumber              " 开启相对行号
+"set relativenumber              " 开启相对行号
 
 set tabstop=4                   " 设置 tab的宽度
 set expandtab                   " 空格代替tab
@@ -104,11 +136,13 @@ set fileformat=unix             " 设定文件的格式
 "=======================================================================================================
 " 我自己的set
 let ppp="~/.YUKVIM/"
+"highlight Function cterm=bold,underline ctermbg=blue ctermfg=yellow  " 函数高亮(py only)
 "=======================================================================================================
 "快捷键
 inoremap <c-l> <esc>A
 inoremap <c-h> <esc>I
 inoremap <c-K> <esc>viw~i
+inoremap jk <esc>
 "括号自动补全
 inoremap ( ()<esc>i
 inoremap { {}<esc>i
@@ -126,9 +160,13 @@ iab ture true
 iab retrun return
 iab tehn then
 iab fro for
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel  " 给单词加上双引号
-nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel  " 给单词加上单引号
+" 给单词加上双引号
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+" 给单词加上单引号
+nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 nnoremap <leader>< viw<esc>a><esc>hbi<<esc>lel
 nnoremap <leader>[ viw<esc>a]<esc>hbi[<esc>lel
 nnoremap <leader>{ viw<esc>a}<esc>hbi{<esc>lel
+" 全部删除
+nnoremap <leader>d <esc>GVggdi
 

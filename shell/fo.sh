@@ -39,7 +39,10 @@ echo "[+] Runing $suffix file...."
 echo "##############################"
 
 if [ "$suffix" = "cpp" ];then
-    g++ -g -o $2 $1
+    if [ -f $2 ];then # 存在先杀掉
+        rm -f $2
+    fi
+    g++ -g -o $2 $1 --std=c++11
     `pwd`/$2
 elif [ "$suffix" = "c" ];then
     g++ -g -o $2 $1
